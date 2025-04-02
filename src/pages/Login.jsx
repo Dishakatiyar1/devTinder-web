@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { addUser } from "../redux/slices/userSlice";
+import { addUser, removeUser } from "../redux/slices/userSlice";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
@@ -18,8 +18,18 @@ const Login = () => {
     setError("");
     setLoading(true);
 
+    // Email & Password Regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validation Checks
     if (!email || !password) {
       setError("Please fill in all fields.");
+      setLoading(false);
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      setError("Invalid email format.");
       setLoading(false);
       return;
     }
@@ -38,6 +48,7 @@ const Login = () => {
       dispatch(addUser(response.data));
       navigate("/");
     } catch (err) {
+      setError(err?.response?.data, "Something went wrong!");
       console.error("Login failed!", err.message);
     } finally {
       setLoading(false);

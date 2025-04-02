@@ -1,13 +1,28 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { BASE_URL } from "../utils/constants";
+import axios from "axios";
+import { removeUser } from "../redux/slices/userSlice";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+      dispatch(removeUser());
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -17,7 +32,7 @@ const Navbar = () => {
           devTinder
         </a>
       </div>
-      {Object.keys(user)?.length > 0 && (
+      {Object.keys(user || {})?.length > 0 && (
         <div className="flex gap-4 items-center">
           <p>Welcome, {user?.firstName} </p>
           <div
@@ -57,7 +72,7 @@ const Navbar = () => {
                   <a>Settings</a>
                 </li>
                 <li className="p-2 hover:bg-gray-100 rounded-md transition">
-                  <a>Logout</a>
+                  <p onClick={handleLogout}>Logout</p>
                 </li>
               </ul>
             )}
