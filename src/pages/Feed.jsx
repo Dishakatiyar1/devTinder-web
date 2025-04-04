@@ -41,7 +41,7 @@ const Feed = () => {
       />
     </div>
   ) : (
-    <>OOPs! We couldn't get more users for your feed.</>
+    <>OOPs! No new users found.</>
   );
 };
 
