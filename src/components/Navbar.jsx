@@ -69,7 +69,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="p-2 hover:bg-gray-100 rounded-md transition">
-                  <a>Settings</a>
+                  <Link to="/connections">Connections</Link>
                 </li>
                 <li className="p-2 hover:bg-gray-100 rounded-md transition">
                   <p onClick={handleLogout}>Logout</p>
