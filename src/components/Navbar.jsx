@@ -28,8 +28,11 @@ const Navbar = () => {
   return (
     <nav className="navbar bg-white shadow sticky top-0 z-50 px-4 py-2">
       <div className="flex-1">
-        <a className="text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors cursor-pointer">
-          devTinder
+        <a
+          className="text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors cursor-pointer"
+          href="/"
+        >
+          devConnect
         </a>
       </div>
       {Object.keys(user || {})?.length > 0 && (
@@ -59,7 +62,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="dropdown-content absolute right-0 mt-2 w-48 p-2 bg-white border border-gray-200 rounded-lg shadow-lg"
               >
-                <li className="p-2 hover:bg-gray-100 rounded-md transition">
+                <li className="p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
                   <Link
                     to="/profile"
                     className="flex justify-between items-center"
@@ -68,13 +71,13 @@ const Navbar = () => {
                     <span className="badge bg-blue-500 text-white">New</span>
                   </Link>
                 </li>
-                <li className="p-2 hover:bg-gray-100 rounded-md transition">
+                <li className="p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
                   <Link to="/connections">Connections</Link>
                 </li>
-                <li className="p-2 hover:bg-gray-100 rounded-md transition">
+                <li className="p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
                   <Link to="/requests">Requests</Link>
                 </li>
-                <li className="p-2 hover:bg-gray-100 rounded-md transition">
+                <li className="p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
                   <p onClick={handleLogout}>Logout</p>
                 </li>
               </ul>

@@ -52,23 +52,25 @@ const Connections = () => {
 
         {/* Connections List */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {connections?.map((user) => (
-            <div
-              key={user?.id}
-              className="flex items-center p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition"
-            >
-              <img
-                src={user?.photoUrl || "https://via.placeholder.com/50"}
-                alt={user?.firstName}
-                className="w-12 h-12 rounded-full mr-4"
-              />
-              <div className="flex-grow">
-                <h3 className="text-lg font-semibold">
-                  {user?.firstName} {user?.lastName}
-                </h3>
+          {connections
+            ?.filter((item) => item != null)
+            ?.map((user) => (
+              <div
+                key={user?.id}
+                className="flex items-center p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition"
+              >
+                <img
+                  src={user?.photoUrl || "https://via.placeholder.com/50"}
+                  alt={user?.firstName}
+                  className="w-12 h-12 rounded-full mr-4"
+                />
+                <div className="flex-grow">
+                  <h3 className="text-lg font-semibold">
+                    {user?.firstName} {user?.lastName}
+                  </h3>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
