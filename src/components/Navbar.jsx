@@ -78,6 +78,9 @@ const Navbar = () => {
                   <Link to="/requests">Requests</Link>
                 </li>
                 <li className="p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
+                  <Link to="/premium">Premium</Link>
+                </li>
+                <li className="p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
                   <p onClick={handleLogout}>Logout</p>
                 </li>
               </ul>

@@ -8,6 +8,7 @@ import Feed from "./pages/Feed";
 import Connections from "./pages/Connections";
 import Requests from "./pages/Requests";
 import Chat from "./pages/Chat";
+import Premium from "./pages/Premium";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="connections" element={<Connections />} />
             <Route path="requests" element={<Requests />} />
             <Route path="chat/:targetUserId" element={<Chat />} />
+            <Route path="premium" element={<Premium />} />
           </Route>
         </Routes>
       </BrowserRouter>
