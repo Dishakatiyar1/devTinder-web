@@ -34,18 +34,20 @@ const Premium = () => {
         { headers: { contentType: "application/json" }, withCredentials: true }
       );
 
+      const { keyId, amount, currency, notes, orderId } = order.data;
+
       const options = {
-        key: order?.keyId,
-        amount: order.amount / 100,
-        currency: order.currency,
-        name: order.notes.firstName + " " + order.notes.lastName,
+        key: keyId,
+        amount: amount / 100,
+        currency: currency,
+        name: notes.firstName + " " + notes.lastName,
         description: "Test Transaction",
-        order_id: order.orderId,
-        callback_url: "http://localhost:3000/payment-success", // Your success URL
+        order_id: orderId,
+        callback_url: "/payment-success", // Your success URL
         prefill: {
-          name: "Disha Katiyar",
-          email: "disha.katiyar@gmail.com",
-          contact: "9999999999",
+          name: notes.firstName + " " + notes.lastName,
+          email: notes.emailId,
+          contact: "000",
         },
         theme: {
           color: "#F37254",
