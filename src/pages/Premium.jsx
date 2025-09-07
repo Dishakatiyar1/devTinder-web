@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { BASE_URL } from "../utils/constants";
