@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BASE_URL } from "../utils/constants";
+import { useNavigate } from "react-router";
 
 const Premium = () => {
+  const navigate = useNavigate();
   const [selectedPlan, setSelectedPlan] = useState("monthly");
+  const [isUserPremium, setIsUserPremium] = useState(false);
 
   const plans = [
     {
@@ -25,6 +29,15 @@ const Premium = () => {
       ],
     },
   ];
+
+  const verifyPremiumUser = async () => {
+    const res = await axios.get(`${BASE_URL}/premium/verify`, {
+      withCredentials: true,
+    });
+    if (res.data.isPremium) {
+      setIsUserPremium(true);
+    }
+  };
 
   const handlePayment = async (plan) => {
     try {
@@ -52,6 +65,7 @@ const Premium = () => {
         theme: {
           color: "#F37254",
         },
+        handler: verifyPremiumUser,
       };
 
       const rzp = new window.Razorpay(options);
@@ -64,7 +78,11 @@ const Premium = () => {
     }
   };
 
-  return (
+  useEffect(() => {
+    verifyPremiumUser();
+  }, []);
+
+  return isUserPremium ? (
     <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
       <div className="text-center py-8">
@@ -126,6 +144,20 @@ const Premium = () => {
             </button>
           </div>
         ))}
+      </div>
+    </div>
+  ) : (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <div className="bg-white rounded-xl shadow-lg p-8 text-center max-w-md border border-purple-200">
+        <h2 className="text-2xl font-bold text-purple-700 mb-3">
+          You are already a Premium Member 🎉
+        </h2>
+        <button
+          onClick={() => navigate("/")}
+          className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition"
+        >
+          Go to Dashboard
+        </button>
       </div>
     </div>
   );
