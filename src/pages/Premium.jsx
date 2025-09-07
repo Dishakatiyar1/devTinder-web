@@ -85,7 +85,7 @@ const Premium = () => {
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-50 p-4">
       <div className="bg-white rounded-xl shadow-lg p-8 text-center max-w-md border border-purple-200">
         <h2 className="text-2xl font-bold text-purple-700 mb-3">
-          You are already a Premium Member 🎉
+          You are a Premium Member 🎉
         </h2>
         <button
           onClick={() => navigate("/")}
@@ -147,7 +147,7 @@ const Premium = () => {
 
             <button
               onClick={() => handlePayment(plan)}
-              className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
+              className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors cursor-pointer ${
                 selectedPlan === plan.id
                   ? "bg-purple-600 text-white hover:bg-purple-700"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
